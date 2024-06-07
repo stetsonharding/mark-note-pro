@@ -1,10 +1,16 @@
 import NewNoteForm from './NewNoteForm'
+import { Note } from '../models/model'
 
-function NewNote() {
+type NewNoteProps ={
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>
+}
+
+const NewNote = ({setNotes}: NewNoteProps) => {
+
   return (
     <>
-    <h1 className="my-4">New Note</h1>
-    <NewNoteForm />
+    <h2 className="mb-5 mt-5">New Note</h2>
+    <NewNoteForm setNotes={setNotes} />
     </>
   )
 }
