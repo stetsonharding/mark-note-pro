@@ -1,9 +1,26 @@
-import React from 'react'
+import { Note } from "./models/model";
+import Search from "./components/Search";
 
-function Dashboard() {
+import CreateBtn from "./components/CreateBtn";
+import MarkdownNotesContainer from "./components/MarkdownNotesContainer";
+
+
+type dashboardProps = {
+  notes: Note[];
+};
+
+const Dashboard = ({ notes }: dashboardProps) => {
   return (
-    <div>Home Page</div>
-  )
-}
+    <div>
+      <h2>Markdown Notes</h2>
+      <CreateBtn btnName="Create Note" />
+      <Search />
+    
 
-export default Dashboard
+     <MarkdownNotesContainer notes={notes} />
+     
+    </div>
+  );
+};
+
+export default Dashboard;

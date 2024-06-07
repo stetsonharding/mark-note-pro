@@ -13,12 +13,12 @@ function App() {
   //State to hold all created notes.
   const [notes, setNotes] = useState<Note[]>([])
 
-  console.log(notes)
+
   
   return (
     <Container className="my-4">
       <Routes>
-        <Route path="/" element={<Dashboard/>} />
+        <Route path="/" element={<Dashboard notes={notes}/>} />
         <Route path="/newNote" element={<NewNote setNotes={setNotes} />} />
         <Route path="/:id">
           <Route index element={<h1>Show</h1>} />

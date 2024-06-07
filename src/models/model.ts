@@ -5,7 +5,7 @@ export type Tag ={
 
 
 export type Note ={
-    id: string
+    id: number
    title: string;
    tags: Tag[];
    markdown: string;
