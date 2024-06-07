@@ -5,6 +5,7 @@ import Creatable from "react-select/creatable";
 import { Note} from '../models/model';
 import { Tag } from '../models/model';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 type NoteFormProps = {
   setNotes: React.Dispatch<React.SetStateAction<Note[]>>
@@ -13,6 +14,7 @@ type NoteFormProps = {
 const NewNoteForm = ({setNotes} : NoteFormProps) => {
 const [newNote, setNewNote] = useState<Note>({id: "", title: "", markdown:"", tags:[]})
 const [selectedTags, setSelectedTags] = useState<Tag[]>([])
+const navigate = useNavigate();
 
 
 const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,14 +29,17 @@ const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
   
 };
 
-const glaks = (e:FormEvent) => {
+const createNote = (e:FormEvent) => {
   e.preventDefault();
 setNotes(prev => [...prev, {...newNote, tags: selectedTags}])
+setNewNote({id: "", title: "", markdown:"", tags:[]})
+setSelectedTags([])
+navigate("/")
 }
 
 
   return (
-    <Form onSubmit={glaks}>
+    <Form onSubmit={createNote}>
       <Stack gap={4}>
         <Row>
           <Col>
