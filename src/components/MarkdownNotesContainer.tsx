@@ -1,4 +1,3 @@
-
 import { Container, Row, Col } from "react-bootstrap";
 import MarkdownNote from "./MarkdownNote";
 import { Note } from "../models/model";
@@ -12,10 +11,17 @@ const MarkdownNotesContainer = ({ notes }: markdownContainerProps) => {
     <Container>
       <Row>
         <Col className="d-flex gap-2 flex-wrap justify-content-start">
-          {notes.map((note, index) => {
-            return <MarkdownNote title={note.title} id={note.id + index} tags={note.tags} />;
+          {notes.map((note) => {
+            return (
+              <MarkdownNote
+                key={note.id} // Unique key
+                title={note.title}
+                id={note.id}
+                tags={note.tags}
+              />
+            );
           })}
-        </Col> 
+        </Col>
       </Row>
     </Container>
   );
