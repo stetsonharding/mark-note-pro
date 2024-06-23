@@ -1,9 +1,8 @@
-import React, {ChangeEvent, FormEvent, useRef, useState} from 'react'
+import React, {ChangeEvent, FormEvent, useState} from 'react'
 import { Form, Button, Stack, Row, Col } from "react-bootstrap";
 
 import Creatable from "react-select/creatable";
-import { Note} from '../models/model';
-import { Tag } from '../models/model';
+import { Note, Tag} from '../models/model';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +11,7 @@ type NoteFormProps = {
 }
 
 const NewNoteForm = ({setNotes} : NoteFormProps) => {
-const [newNote, setNewNote] = useState<Note>({id: "", title: "", markdown:"", tags:[]})
+const [newNote, setNewNote] = useState<Note>({id: 0, title: "", markdown:"", tags:[]})
 const [selectedTags, setSelectedTags] = useState<Tag[]>([])
 const navigate = useNavigate();
 
@@ -24,7 +23,8 @@ const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
   setNewNote(prevNotes => ({
     ...prevNotes,
     [name]: value,
-    tags: selectedTags
+    tags: selectedTags,
+    id: Date.now()
   }));
   
 };
@@ -32,7 +32,7 @@ const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
 const createNote = (e:FormEvent) => {
   e.preventDefault();
 setNotes(prev => [...prev, {...newNote, tags: selectedTags}])
-setNewNote({id: "", title: "", markdown:"", tags:[]})
+setNewNote({id: 0, title: "", markdown:"", tags:[]})
 setSelectedTags([])
 navigate("/")
 }
