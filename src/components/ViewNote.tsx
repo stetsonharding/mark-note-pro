@@ -24,6 +24,7 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
   if (!note) {
     return <div>Note not found</div>;
   }
+  console.log(note.id)
 
   return (
    <>
@@ -34,7 +35,7 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
       </Col>
       <Col xs="auto">
       <Stack gap={1} direction='horizontal'>
-      <Link to={`/${note.id}/edit}`}><Button variant='primary'>Edit</Button></Link>
+      <Link to={`/${noteId}/edit`}><Button variant='primary'>Edit</Button></Link>
       <Button variant='outline-danger'>Delete</Button>
       <Button variant='light'>Back</Button>
       </Stack>
