@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 
 import { Note } from "./models/model";
 import ViewNote from "./components/ViewNote";
+import EditNote from "./components/EditNote";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
         <Route path="/newNote" element={<NewNote setNotes={setNotes} />} />
         <Route path="/:id">
           <Route index element={<ViewNote notes={notes} setNotes={setNotes}/>} />
-          <Route path="edit" element={<h1>edit</h1>} />
+          <Route path="edit" element={<EditNote />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
