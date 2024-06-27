@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react'
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react'
 import { Form, Button, Stack, Row, Col } from "react-bootstrap";
 
 import Creatable from "react-select/creatable";
@@ -8,13 +8,22 @@ import { useNavigate } from "react-router-dom";
 
 type NoteFormProps = {
   setNotes: React.Dispatch<React.SetStateAction<Note[]>>
+  editedNote: Note | undefined
 }
 
-const NewNoteForm = ({setNotes} : NoteFormProps) => {
+const NewNoteForm = ({editedNote, setNotes} : NoteFormProps) => {
 const [newNote, setNewNote] = useState<Note>({id: 0, title: "", markdown:"", tags:[]})
 const [selectedTags, setSelectedTags] = useState<Tag[]>([])
 const navigate = useNavigate();
 
+
+
+useEffect(() => {
+if(editedNote) {
+  setNewNote(editedNote)
+
+}
+},[editedNote])
 
 const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
   e.preventDefault();
@@ -45,7 +54,7 @@ navigate("/")
           <Col>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder='Enter Note Title' name="title" onChange={handleOnChange} required />
+              <Form.Control type="text" placeholder='Enter Note Title' name="title" value={newNote.title} onChange={handleOnChange} required />
             </Form.Group>
           </Col>
           <Col>
@@ -68,7 +77,7 @@ navigate("/")
           <Col>
             <Form.Group controlId="markdown">
               <Form.Label>Body</Form.Label>
-              <Form.Control as="textarea" rows={15} name="markdown" onChange={handleOnChange} required />
+              <Form.Control as="textarea" rows={15} name="markdown" value={newNote.markdown} onChange={handleOnChange} required />
             </Form.Group>
           </Col>
         </Row>

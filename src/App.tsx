@@ -24,7 +24,7 @@ function App() {
         <Route path="/newNote" element={<NewNote setNotes={setNotes} />} />
         <Route path="/:id">
           <Route index element={<ViewNote notes={notes} setNotes={setNotes}/>} />
-          <Route path="edit" element={<EditNote />} />
+          <Route path="edit" element={<EditNote notes={notes}setNotes={setNotes} />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
