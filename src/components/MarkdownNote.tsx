@@ -1,6 +1,7 @@
 import { Tag } from "../models/model";
 import { Badge, Stack, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import RenderTags from "./RenderTags";
 
 type markDownNoteProps = {
   title: string;
@@ -15,11 +16,8 @@ const MarkdownNote = ({ title, id, tags }: markDownNoteProps) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Stack gap={1} direction="horizontal" className="flex-wrap justify-content-center">
-            {tags.map((tag) => (
-              <Badge className="text-truncate" key={tag.id}>
-                {tag.label}
-              </Badge>
-            ))}
+          {/* Render tags for note */}
+            <RenderTags tags={tags}/>
           </Stack>
         </Card.Body>
       </Card>

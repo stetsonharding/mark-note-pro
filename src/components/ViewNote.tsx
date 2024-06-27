@@ -1,6 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Note } from '../models/model';
+import { Row, Col, Stack, Button } from 'react-bootstrap';
+import RenderTags from './RenderTags';
+import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router-dom';
 
 type ViewNoteProps = {
   notes: Note[];
@@ -9,6 +13,7 @@ type ViewNoteProps = {
 
 const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
     const { id } = useParams<{ id: string }>();
+  
 
     // Convert the id from useParams to a number
     const noteId = Number(id);
@@ -19,14 +24,25 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
   if (!note) {
     return <div>Note not found</div>;
   }
+  console.log(note.id)
 
   return (
-    <div>
-      <h2>View Note</h2>
-      <p>ID: {note.id}</p>
-      <p>Title: {note.title}</p>
-    
-    </div>
+   <>
+    <Row>
+     <Col>
+      <h2>{note.title}</h2>
+      <RenderTags tags={note.tags}/>
+      </Col>
+      <Col xs="auto">
+      <Stack gap={1} direction='horizontal'>
+      <Link to={`/${noteId}/edit`}><Button variant='primary'>Edit</Button></Link>
+      <Button variant='outline-danger'>Delete</Button>
+      <Button variant='light'>Back</Button>
+      </Stack>
+      </Col>
+    </Row>
+    <ReactMarkdown>{note.markdown}</ReactMarkdown>
+   </>
   );
 };
 
