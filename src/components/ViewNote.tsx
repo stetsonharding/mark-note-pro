@@ -26,6 +26,8 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
   }
   console.log(note.id)
 
+
+
   return (
    <>
     <Row>
@@ -37,7 +39,7 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
       <Stack gap={1} direction='horizontal'>
       <Link to={`/${noteId}/edit`}><Button variant='primary'>Edit</Button></Link>
       <Button variant='outline-danger'>Delete</Button>
-      <Button variant='light'>Back</Button>
+      <Link to="/"><Button variant='light'>Back</Button></Link>
       </Stack>
       </Col>
     </Row>
