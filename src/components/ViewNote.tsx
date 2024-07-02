@@ -24,9 +24,12 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
   if (!note) {
     return <div>Note not found</div>;
   }
-  console.log(note.id)
+ 
 
-
+const deleteNote = () => {
+const updatedNotes = notes.filter(note => note.id !== noteId)
+setNotes(updatedNotes)
+}
 
   return (
    <>
@@ -38,7 +41,7 @@ const ViewNote = ({ notes, setNotes }: ViewNoteProps) => {
       <Col xs="auto">
       <Stack gap={1} direction='horizontal'>
       <Link to={`/${noteId}/edit`}><Button variant='primary'>Edit</Button></Link>
-      <Button variant='outline-danger'>Delete</Button>
+      <Link to="/"><Button variant='outline-danger' onClick={deleteNote}>Delete</Button></Link>
       <Link to="/"><Button variant='light'>Back</Button></Link>
       </Stack>
       </Col>
