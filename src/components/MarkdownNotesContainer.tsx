@@ -3,15 +3,15 @@ import MarkdownNote from "./MarkdownNote";
 import { Note } from "../models/model";
 
 type markdownContainerProps = {
-  notes: Note[];
+  notez: Note[];
 };
 
-const MarkdownNotesContainer = ({ notes }: markdownContainerProps) => {
+const MarkdownNotesContainer = ({ notez }: markdownContainerProps) => {
   return (
     <Container>
       <Row>
         <Col className="d-flex gap-2 flex-wrap justify-content-start">
-          {notes.map((note) => {
+          {notez.map((note) => {
             return (
               <MarkdownNote
                 key={note.id} // Unique key
