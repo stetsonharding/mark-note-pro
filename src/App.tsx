@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -9,11 +9,13 @@ import Dashboard from "./Dashboard";
 import { Note } from "./models/model";
 import ViewNote from "./components/ViewNote";
 import EditNote from "./components/EditNote";
+import { useLocalStorage } from "./useLocalStorage";
 
 function App() {
 
   //State to hold all created notes.
-  const [notes, setNotes] = useState<Note[]>([])
+  // const [notes, setNotes] = useState<Note[]>([])
+  const [notes, setNotes] = useLocalStorage<Note[]>('notes', [])
 
 
   
